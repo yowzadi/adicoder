@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JavaScript form validation - checking all letters and numbers</title>
+<link rel='stylesheet' href='form-style.css' type='text/css' />
+</head>
+<body onload='document.form1.text1.focus()'>
+<div class="mail">
+<h2>Enter your Registration Number and Submit</h2>
+<form name="form1" action="#">
+<ul>
+<li><input type='text' name='text1'placeholder="4-18"/></li>
+<li class="rq">*Enter numbers and alphabets only.</li>
+<li>&nbsp;</li>
+<li><input type="submit" name="submit" value="Submit" onclick="alphanumeric(document.form1.text1)" /></li>
+<li>&nbsp;</li>
+</ul>
+</form>
+</div>
+<script src="check-letters-numbers.js"></script>
+</body>
+</html>
+<script>
+function alphanumeric(inputtxt)
+{ 
+var letters = /^[0-9a-zA-Z]+$/;
+if(inputtxt.value.match(letters))
+{
+alert('invalid');
+return false;
+}
+else
+{
+alert('Please input alphanumeric characters only');
+document.form1.text1.focus();
+return true;
+}
+}
+(function () {
+            'use strict';
+            window.addEventListener('load', function () {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+</script>
+<style>
+    li {list-style-type: none;
+font-size: 16pt;
+}
+.mail {
+margin: auto;
+padding-top: 10px;
+padding-bottom: 10px;
+width: 400px;
+background : #ffffff;
+border: 1px soild rgb(255, 255, 255);
+}
+.mail h2 {
+margin-left: 38px;
+}
+input {
+font-size: 20pt;
+}
+input:focus, textarea:focus{
+background-color: lightyellow;
+}
+input submit {
+font-size: 12pt;
+}
+.rq {
+color: #FF0000;
+font-size: 10pt;
+}
+
+</style>
